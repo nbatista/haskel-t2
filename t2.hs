@@ -8,3 +8,8 @@ geraPotencias x = [2^x | x <- [x, x-1 .. 0]]
 -- questão 2
 addSuffix :: String -> [String] -> [String]
 addSuffix x y = [y ++ x | y <- y]
+
+-- questão 3
+
+anosDeNascimento :: [Int] -> [Int]
+anosDeNascimento x = [2015 - x | x <- x, x>20]
