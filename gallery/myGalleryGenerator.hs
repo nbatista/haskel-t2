@@ -22,9 +22,11 @@ fillHtml htmltemplate content = replace "<!--@content-->" content htmltemplate
 -- O resultado final deve ser uma unica string (e nao uma lista de strings)
 
 genContent :: [(String,String)] -> String
+genContent [] = []
 genContent items = foldr1 (++) (map(imageDiv)items)
 
 listcomprehension :: [(String,String)] -> String
+listcomprehension [] = []
 listcomprehension items = foldr1 (++) [imageDiv x | x <- items]
 
 
