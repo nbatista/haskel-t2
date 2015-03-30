@@ -20,14 +20,21 @@ fillHtml htmltemplate content = replace "<!--@content-->" content htmltemplate
 
 -- Complete esta funcao de forma a aplicar imageDiv a cada um dos itens da galeria
 -- O resultado final deve ser uma unica string (e nao uma lista de strings)
+
 genContent :: [(String,String)] -> String
-genContent items = "" -- substitua a string vazia pelo codigo gerador
+genContent items = foldr1 (++) (map(imageDiv)items)
+
+listcomprehension :: [(String,String)] -> String
+listcomprehension items = foldr1 (++) [imageDiv x | x <- items]
+
+
 
 main :: IO ()
 main = do
     htmltemplate <- readFile infile
     putStrLn ("Gerando arquivo " ++ outfile)
     writeFile outfile (fillHtml htmltemplate (genContent galleryItems))
+  --  writeFile outfile (fillHtml htmltemplate (listcomprehension galleryItems))
     putStrLn "Feito!"
     where 
     infile = "template.html"
